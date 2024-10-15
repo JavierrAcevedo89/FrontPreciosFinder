@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+        <div class="Titulo">
+            <img src="../../assets/logo.jfif" alt="Logo PreciosFinder" class="logo">
+            <h1>PreciosFinder</h1>
+            <input
+              type="text"
+              [(ngModel)]="query"
+              placeholder="Buscar producto..."
+            />
+            <button (click)="search()">🔎</button>
+        </div>
+        <h2>Resultados de búsqueda:</h2>
+          <div *ngIf="products.length" class="resultados">
+            <div *ngFor="let product of products">
+              <img [src]="product.thumbnail" alt="Imagen del producto" />
+              <p>{{ product.title }}</p>
+              <a [href]="product.permalink" target="_blank">Ver Producto</a>
+            </div>
+          </div>  
+</body>
+</html>
