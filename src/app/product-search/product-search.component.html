@@ -17,15 +17,15 @@
             <button (click)="search()">🔎</button>
         </div>
         <h2>Resultados de búsqueda:</h2>
-          <div *ngIf="productsMercado.length" class="resultados">
+          <div *ngIf="productsMercado.length" class="resultadosMercado">
             <div *ngFor="let product of productsMercado">
               <img [src]="product.thumbnail" alt="Imagen del producto" />
               <p>{{ product.title }}</p>
-              <a [href]="product.permalink" target="_blank">Ver Producto</a>
+              <a [href]="product.permalink" target="_blank">Ver Producto en Mercado Libre</a>
             </div>
           </div>  
 
-          <div *ngIf="productsAli.length > 0" class="resultados">
+          <div *ngIf="productsAli.length > 0" class="resultadosAliexpress">
             <div *ngFor="let product of productsAli">
               <img [src]="product.image" alt="{{ product.title }}" />
               <p>{{ product.title }}</p>
