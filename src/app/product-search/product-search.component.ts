@@ -22,21 +22,21 @@ export class ProductSearchComponent {
       this.mercadoLibreService.searchProducts(this.query).subscribe((data) => {
         this.productsMercado = [data.results[0]];
       });
-      this.AliexpressService.searchProducts(this.query).subscribe((data) => {
-        // Accede al primer producto en la lista de resultados
-        const resultList = data.result?.resultList || [];
-        if (resultList.length > 0) {
-          const item = resultList[0].item;
-          if (item) {
-            // Asegúrate de que la URL de la imagen y el enlace estén completos
-            this.productsAli = [{
-              title: item.title, // El título del producto
-              image: `https:${item.image}`, // Añade el prefijo https: a la imagen
-              itemUrl: `https:${item.itemUrl}`, // Añade el prefijo https: al enlace
-            }];
-          }
-        }
-      });
+      // this.AliexpressService.searchProducts(this.query).subscribe((data) => {
+      //   // Accede al primer producto en la lista de resultados
+      //   const resultList = data.result?.resultList || [];
+      //   if (resultList.length > 0) {
+      //     const item = resultList[0].item;
+      //     if (item) {
+      //       // Asegúrate de que la URL de la imagen y el enlace estén completos
+      //       this.productsAli = [{
+      //         title: item.title, // El título del producto
+      //         image: `https:${item.image}`, // Añade el prefijo https: a la imagen
+      //         itemUrl: `https:${item.itemUrl}`, // Añade el prefijo https: al enlace
+      //       }];
+      //     }
+      //   }
+      // });
     }
   }
 }
