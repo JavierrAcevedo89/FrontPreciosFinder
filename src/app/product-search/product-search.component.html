@@ -35,6 +35,7 @@
     </nav>
         <h2>Resultados de búsqueda:</h2>
         <div class="resultadosContenedor"> <!-- Contenedor padre agregado -->
+          
           <div *ngIf="productsMercado.length" class="resultadosMercado">
             <div *ngFor="let product of productsMercado">
               <img [src]="product.thumbnail" alt="Imagen del producto" />
@@ -53,9 +54,9 @@
 
           <div *ngIf="productsAmazon.length > 0">
             <div *ngFor="let product of productsAmazon">
-              <h2>{{ product.product_title }}</h2>
-              <a [href]="product.product_url" target="_blank">{{ product.product_url }}</a>
-              <img [src]="product.product_photo" [alt]="product.product_title" />
+              <h2>{{ product.title }}</h2>
+              <a [href]="product.url" target="_blank">{{ product.url }}</a>
+              <img [src]="product.image" [alt]="product.title" />
             </div>
           </div>
         </div>

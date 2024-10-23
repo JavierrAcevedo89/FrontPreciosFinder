@@ -43,15 +43,17 @@ export class ProductSearchComponent {
       // });
       this.AmazonService.searchProducts(this.query).subscribe((data) => {
         console.log(data); 
-        const products = data.products || [];
+        const products = data.data?.products || [];
         if (products.length > 0) {
           // Asignamos los productos a la variable productsAmazon
+          const item = products[0].item;
           this.productsAmazon = products.map((product: any) => ({
             title: product.product_title,
             url: product.product_url,
             image: product.product_photo,
           }));
         }
+        //console.log(this.AmazonService); 
       });
       
     }
