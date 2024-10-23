@@ -52,7 +52,7 @@
             </div>
           </div>
 
-          <div *ngIf="productsAmazon.length > 0">
+          <div *ngIf="productsAmazon.length > 0" class="resultadosAliexpress">
             <div *ngFor="let product of productsAmazon">
               <h2>{{ product.title }}</h2>
               <a [href]="product.url" target="_blank">{{ product.url }}</a>

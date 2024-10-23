@@ -41,19 +41,19 @@ export class ProductSearchComponent {
       //     }
       //   }
       // });
+      
       this.AmazonService.searchProducts(this.query).subscribe((data) => {
-        console.log(data); 
         const products = data.data?.products || [];
         if (products.length > 0) {
-          // Asignamos los productos a la variable productsAmazon
-          const item = products[0].item;
-          this.productsAmazon = products.map((product: any) => ({
-            title: product.product_title,
-            url: product.product_url,
-            image: product.product_photo,
-          }));
+          const product = products[0]; 
+          if (product) {
+            this.productsAmazon = [{
+              title: product.product_title, 
+              image: product.product_photo, 
+              url: product.product_url, 
+            }];
+          }
         }
-        //console.log(this.AmazonService); 
       });
       
     }
