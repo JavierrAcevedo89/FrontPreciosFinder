@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MercadoLibreService } from '../mercado-libre.service';
 import { AliexpressService } from '../ali-express.service';
 import { AmazonService} from '../amazon.service'
+import { EbayService } from '../ebay.service';
 
 
 @Component({
@@ -13,12 +14,14 @@ export class ProductSearchComponent {
   query: string = '';
   productsMercado: any[] = [];
   productsAli: any[] = [];
-  productsAmazon: any[] = []; 
+  productsAmazon: any[] = [];
+  productsEbay: any = null;
 
   constructor(
     private mercadoLibreService: MercadoLibreService,
     private AliexpressService: AliexpressService, 
-    private AmazonService: AmazonService
+    private AmazonService: AmazonService,
+    private EbayService: EbayService
   ) {}
 
   search(): void {
@@ -26,21 +29,20 @@ export class ProductSearchComponent {
       this.mercadoLibreService.searchProducts(this.query).subscribe((data) => {
         this.productsMercado = [data.results[0]];
       });
-      // this.AliexpressService.searchProducts(this.query).subscribe((data) => {
-      //   // Accede al primer producto en la lista de resultados
-      //   const resultList = data.result?.resultList || [];
-      //   if (resultList.length > 0) {
-      //     const item = resultList[0].item;
-      //     if (item) {
-      //       // Asegúrate de que la URL de la imagen y el enlace estén completos
-      //       this.productsAli = [{
-      //         title: item.title, // El título del producto
-      //         image: `https:${item.image}`, // Añade el prefijo https: a la imagen
-      //         itemUrl: `https:${item.itemUrl}`, // Añade el prefijo https: al enlace
-      //       }];
-      //     }
-      //   }
-      // });
+
+      this.AliexpressService.searchProducts(this.query).subscribe((data) => {
+        const resultList = data.result?.resultList || [];
+        if (resultList.length > 0) {
+          const item = resultList[0].item;
+          if (item) {
+            this.productsAli = [{
+              title: item.title, 
+              image: `https:${item.image}`, 
+              itemUrl: `https:${item.itemUrl}`, 
+            }];
+          }
+        }
+      });
       
       this.AmazonService.searchProducts(this.query).subscribe((data) => {
         const products = data.data?.products || [];
@@ -55,7 +57,12 @@ export class ProductSearchComponent {
           }
         }
       });
-      
+
+      this.EbayService.searchProduct(this.query).subscribe(
+        (result) => {
+          this.productsEbay = result;
+          console.log(result);
+        });
     }
   }
 }
