@@ -55,7 +55,7 @@
           <div *ngIf="productsAmazon.length > 0" class="resultadosAmazon">
             <div *ngFor="let product of productsAmazon">
               <h2>{{ product.title }}</h2>
-              <a [href]="product.url" target="_blank">{{ product.url }}</a>
+              <a [href]="product.url" target="_blank">Ver en Amazon</a>
               <img [src]="product.image" [alt]="product.title" />
             </div>
           </div>
