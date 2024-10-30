@@ -31,6 +31,19 @@
               placeholder="Buscar producto..."
             />
             <button (click)="search()">🔎</button>
+            <div class="dropdown d-inline mx-2">
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                Categorías
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <li><a class="dropdown-item" href="#">Tecnología</a></li>
+                <li><a class="dropdown-item" href="#">Supermercado</a></li>
+                <li><a class="dropdown-item" href="#">Hogar</a></li>
+                <li><a class="dropdown-item" href="#">Vehiculos</a></li>
+                <li><a class="dropdown-item" href="#">Moda</a></li>
+                <li><a class="dropdown-item" href="#">Belleza</a></li>
+              </ul>
+            </div>
         </div>
     </nav>
         <h2>Resultados de búsqueda:</h2>
