@@ -12,8 +12,7 @@ import { AliexpressService } from './ali-express.service';
 @NgModule({
   declarations: [
     AppComponent,
-    ProductSearchComponent,
-    
+    ProductSearchComponent
   ],
   imports: [
     BrowserModule,
