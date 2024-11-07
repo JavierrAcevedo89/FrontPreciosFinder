@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MercadoLibreService } from '../mercado-libre.service';
 import { AliexpressService } from '../ali-express.service';
 import { AmazonService} from '../amazon.service'
@@ -62,21 +62,34 @@ export class ProductSearchComponent {
     //     }
     //   }
     // });
-
-    // this.EbayService.searchProduct(this.query).subscribe(
-    //   (result) => {
-    //     this.productsEbay = result;
-    //     console.log(result);
-    //   });
+    
+    this.EbayService.searchProduct(this.query).subscribe((result) => {
+          this.productsEbay = result;
+          console.log(result);
+      });
   }
 
   searchCategory(category: string): void {
     this.performSearch(category);
   }
 
-  private performSearch(query: string): void {
-    this.mercadoLibreService.searchProducts(query).subscribe((data) => {
-      this.productsMercado = data.results.slice(0, 5); 
+  public performSearch(query: string): void {
+    // this.mercadoLibreService.searchProducts(query).subscribe((data) => {
+    //   this.productsMercado = data.results.slice(0,5); 
+    // });
+
+    // this.EbayService.searchProductV2(query).subscribe((result) => {
+    //   this.productsEbay = result;
+    //   console.log(result);
+    // });    
+    
+    // this.AmazonService.searchProductsV2(query).subscribe((result) => {
+    //   this.productsAmazon = result.data.products.slice(0, 5);
+    //   console.log(this.productsAmazon);  
+    // });
+
+    this.AliexpressService.searchProductsV2(query).subscribe((data) => {
+      this.productsAli = data;  
     });
   }
 }

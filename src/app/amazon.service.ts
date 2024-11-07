@@ -17,4 +17,12 @@ export class AmazonService {
     const params = new HttpParams().set('query', query).set('page', '1');
     return this.http.get(this.apiUrl, { headers: this.headers, params });
   }
+
+  searchProductsV2(query: string): Observable<any> {
+    const params = new HttpParams()
+      .set('query', query)
+      .set('page', '1')
+      .set('limit', '5');  
+    return this.http.get(this.apiUrl, { headers: this.headers, params });
+  }
 }

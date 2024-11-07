@@ -36,18 +36,18 @@
                 Categorías
               </button>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <button (click)="searchCategory('Tecnología')">Ver 5 artículos de Tecnología</button>
-                <button (click)="searchCategory('Suoermercado')">Ver 5 artículos de Supermercado</button>
-                <button (click)="searchCategory('Hogar')">Ver 5 artículos de Hogar</button>
-                <button (click)="searchCategory('Vehiculos')">Ver 5 artículos de Vehículos</button>
-                <button (click)="searchCategory('Ropa')">Ver 5 artículos de Ropa</button>
-                <button (click)="searchCategory('Belleza')">Ver 5 artículos de Belleza</button>
+                <button (click)="searchCategory('Tecnologia')">Tecnología</button>
+                <button (click)="searchCategory('Supermercado')">Supermercado</button>
+                <button (click)="searchCategory('Hogar')">Hogar</button>
+                <button (click)="searchCategory('Vehiculos')">Vehículos</button>
+                <button (click)="searchCategory('Ropa')">Ropa</button>
+                <button (click)="searchCategory('Belleza')">Belleza</button>
               </ul>
             </div>
         </div>
     </nav>
         <h2>Resultados de búsqueda:</h2>
-        <div class="resultadosContenedor"> <!-- Contenedor padre agregado -->
+        <div class="resultadosContenedor"> 
           
           <div *ngIf="productsMercado.length" class="resultadosMercado">
             <div *ngFor="let product of productsMercado">
@@ -67,17 +67,19 @@
 
           <div *ngIf="productsAmazon.length > 0" class="resultadosAmazon">
             <div *ngFor="let product of productsAmazon">
-              <h2>{{ product.title }}</h2>
-              <a [href]="product.url" target="_blank">Ver en Amazon</a>
-              <img [src]="product.image" [alt]="product.title" />
+              <h2>{{ product.product_title }}</h2> 
+              <a [href]="'https://www.amazon.com/dp/' + product.asin" target="_blank">Ver en Amazon</a> 
+              <img [src]="product.image" [alt]="product.product_title" /> 
             </div>
-          </div>
+          </div>          
 
           <div *ngIf="productsEbay" class="resultadosEbay">
             <div>
-              <img [src]="productsEbay.image" alt="{{ productsEbay.title }}" />
-              <p>{{ productsEbay.title }}</p>
-              <a [href]="productsEbay.url" target="_blank">Ver en EBay</a>
+              <div *ngFor="let product of productsEbay">
+                <img [src]="product.image" alt="{{ product.title }}" />
+                <p>{{ product.title }}</p>
+                <a [href]="product.url" target="_blank">Ver en EBay</a>
+              </div>
             </div>
           </div>
         </div>

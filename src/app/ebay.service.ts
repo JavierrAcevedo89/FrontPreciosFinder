@@ -20,4 +20,11 @@ export class EbayService {
       map(response => response && response.results ? response.results[0] : null)
     );
   }
+
+  searchProductV2(query: string): Observable<any> {
+    const url = `${this.baseUrl}/${query}`;
+    return this.http.get<any>(url, { headers: this.headers }).pipe(
+      map(response => response && response.results ? response.results.slice(0,5) : [])
+    );
+  }
 }
