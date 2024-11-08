@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class AmazonService {
   private apiUrl  = "https://real-time-amazon-data.p.rapidapi.com/search"; 
   private headers = new HttpHeaders()
-    .set('X-Rapidapi-Key', '2b4ce71189msh683d04a5e19e562p118520jsncb129bfd8da4')
+    .set('X-Rapidapi-Key', '35b39687dbmshb9368d55c2680b4p1f92c6jsn2a75b344eab8')
     .set('X-Rapidapi-Host', 'real-time-amazon-data.p.rapidapi.com');
 
   constructor (private http : HttpClient){}

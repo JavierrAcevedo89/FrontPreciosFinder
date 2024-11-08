@@ -9,7 +9,7 @@ import { map } from 'rxjs/operators';
 export class AliexpressService {
   private apiUrl = 'https://aliexpress-datahub.p.rapidapi.com/item_search_3?q=';
   private headers = new HttpHeaders({
-    'x-rapidapi-key': 'cfe28fa81fmsh33a6fc97e8bbd81p113af6jsnea919341d41d',
+    'x-rapidapi-key': '35b39687dbmshb9368d55c2680b4p1f92c6jsn2a75b344eab8',
     'x-rapidapi-host': 'aliexpress-datahub.p.rapidapi.com',
   });
 
@@ -21,17 +21,20 @@ export class AliexpressService {
   }
 
   searchProductsV2(query: string): Observable<any> {
-    return this.searchProducts(query).pipe(
+    const params = new HttpParams().set('q', query).set('page', '1');
+  
+    return this.http.get(this.apiUrl, { headers: this.headers, params }).pipe(
       map((data: any) => {
-        const resultList = data.result?.resultList || [];
-
+        // Accede a los productos dentro de `resultList` y en el objeto `item`
+        const items = data.result?.resultList?.map((listItem: any) => listItem.item).flat();
+  
         // Mapea los primeros 5 productos
-        return resultList.slice(0, 5).map((item: any) => ({  
+        return (items || []).slice(0, 5).map((item: any) => ({
           title: item.title,
-          image: `https:${item.image}`,  
-          itemUrl: `https:${item.itemUrl}`, 
+          image: item.image ? `https:${item.image}` : '', // URL completa de la imagen
+          itemUrl: item.itemUrl ? `https:${item.itemUrl}` : '', // URL completa del producto
         }));
       })
     );
-  }
+  }  
 }

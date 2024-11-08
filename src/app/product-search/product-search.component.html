@@ -69,7 +69,7 @@
             <div *ngFor="let product of productsAmazon">
               <h2>{{ product.product_title }}</h2> 
               <a [href]="'https://www.amazon.com/dp/' + product.asin" target="_blank">Ver en Amazon</a> 
-              <img [src]="product.image" [alt]="product.product_title" /> 
+              <img [src]="product.product_photo" [alt]="product.product_title" /> 
             </div>
           </div>          
 

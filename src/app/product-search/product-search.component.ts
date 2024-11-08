@@ -74,22 +74,23 @@ export class ProductSearchComponent {
   }
 
   public performSearch(query: string): void {
-    // this.mercadoLibreService.searchProducts(query).subscribe((data) => {
-    //   this.productsMercado = data.results.slice(0,5); 
-    // });
+    this.mercadoLibreService.searchProducts(query).subscribe((data) => {
+      this.productsMercado = data.results.slice(0,5); 
+    });
 
-    // this.EbayService.searchProductV2(query).subscribe((result) => {
-    //   this.productsEbay = result;
-    //   console.log(result);
-    // });    
+    this.EbayService.searchProductV2(query).subscribe((result) => {
+      this.productsEbay = result;
+      console.log(result);
+    });    
     
-    // this.AmazonService.searchProductsV2(query).subscribe((result) => {
-    //   this.productsAmazon = result.data.products.slice(0, 5);
-    //   console.log(this.productsAmazon);  
-    // });
+    this.AmazonService.searchProductsV2(query).subscribe((result) => {
+      this.productsAmazon = result.data.products.slice(0, 5);
+      console.log(this.productsAmazon);  
+    });
 
     this.AliexpressService.searchProductsV2(query).subscribe((data) => {
-      this.productsAli = data;  
+      this.productsAli = data;
+      console.log(data);  
     });
   }
 }
