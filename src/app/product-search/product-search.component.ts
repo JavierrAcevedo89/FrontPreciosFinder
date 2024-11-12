@@ -16,6 +16,10 @@ export class ProductSearchComponent {
   productsAli: any[] = [];
   productsAmazon: any[] = [];
   productsEbay: any = null;
+  productsMercadoCategoria: any[] = [];
+  productsAliCategoria: any[] = [];
+  productsAmazonCategoria: any[] = [];
+  productsEbayCategoria: any = null;
 
   constructor(
     private mercadoLibreService: MercadoLibreService,
@@ -31,42 +35,42 @@ export class ProductSearchComponent {
   }
 
   searchTodo(): void {
-    this.mercadoLibreService.searchProducts(this.query).subscribe((data) => {
-      this.productsMercado = [data.results[0]];
+    // this.mercadoLibreService.searchProducts(this.query).subscribe((data) => {
+    //   this.productsMercado = [data.results[0]];
+    // });
+
+    this.AliexpressService.searchProducts(this.query).subscribe((data) => {
+      const resultList = data.result?.resultList || [];
+      if (resultList.length > 0) {
+        const item = resultList[0].item;
+        if (item) {
+          this.productsAli = [{
+            title: item.title, 
+            image: `https:${item.image}`, 
+            itemUrl: `https:${item.itemUrl}`, 
+          }];
+        }
+      }
     });
 
-    // this.AliexpressService.searchProducts(this.query).subscribe((data) => {
-    //   const resultList = data.result?.resultList || [];
-    //   if (resultList.length > 0) {
-    //     const item = resultList[0].item;
-    //     if (item) {
-    //       this.productsAli = [{
-    //         title: item.title, 
-    //         image: `https:${item.image}`, 
-    //         itemUrl: `https:${item.itemUrl}`, 
-    //       }];
-    //     }
-    //   }
-    // });
-
-    // this.AmazonService.searchProducts(this.query).subscribe((data) => {
-    //   const products = data.data?.products || [];
-    //   if (products.length > 0) {
-    //     const product = products[0]; 
-    //     if (product) {
-    //       this.productsAmazon = [{
-    //         title: product.product_title, 
-    //         image: product.product_photo, 
-    //         url: product.product_url, 
-    //       }];
-    //     }
-    //   }
-    // });
+    this.AmazonService.searchProducts(this.query).subscribe((data) => {
+      const products = data.data?.products || [];
+      if (products.length > 0) {
+        const product = products[0]; 
+        if (product) {
+          this.productsAmazon = [{
+            title: product.product_title, 
+            image: product.product_photo, 
+            url: product.product_url, 
+          }];
+        }
+      }
+    });
     
     this.EbayService.searchProduct(this.query).subscribe((result) => {
-          this.productsEbay = result;
-          console.log(result);
-      });
+      this.productsEbay = result;
+      console.log(result);
+    });
   }
 
   searchCategory(category: string): void {
@@ -75,21 +79,21 @@ export class ProductSearchComponent {
 
   public performSearch(query: string): void {
     this.mercadoLibreService.searchProducts(query).subscribe((data) => {
-      this.productsMercado = data.results.slice(0,5); 
+      this.productsMercadoCategoria = data.results.slice(0,5); 
     });
 
     this.EbayService.searchProductV2(query).subscribe((result) => {
-      this.productsEbay = result;
+      this.productsEbayCategoria = result;
       console.log(result);
     });    
     
     this.AmazonService.searchProductsV2(query).subscribe((result) => {
-      this.productsAmazon = result.data.products.slice(0, 5);
+      this.productsAmazonCategoria = result.data.products.slice(0, 5);
       console.log(this.productsAmazon);  
     });
 
     this.AliexpressService.searchProductsV2(query).subscribe((data) => {
-      this.productsAli = data;
+      this.productsAliCategoria = data;
       console.log(data);  
     });
   }
