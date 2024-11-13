@@ -35,9 +35,9 @@ export class ProductSearchComponent {
   }
 
   searchTodo(): void {
-    // this.mercadoLibreService.searchProducts(this.query).subscribe((data) => {
-    //   this.productsMercado = [data.results[0]];
-    // });
+    this.mercadoLibreService.searchProducts(this.query).subscribe((data) => {
+      this.productsMercado = [data.results[0]];
+    });
 
     this.AliexpressService.searchProducts(this.query).subscribe((data) => {
       const resultList = data.result?.resultList || [];
