@@ -3,13 +3,13 @@
     padding: 0;
 }
 
-body {
+html, body {
     width: 100%;
-    height: 100vh;
-    color: #fff; /* Color del texto, que puedes ajustar según sea necesario */
-    background: url('/assets/Fondo.svg') no-repeat center center fixed; /* La imagen se centra y se fija */
-    background-size: cover; /* La imagen cubre todo el contenedor */
-    position: relative;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background: url('/assets/Fondo.svg') no-repeat center center fixed; 
+    background-size: cover; /* La imagen de fondo cubre toda el área */
 }
 
 h1,h2,p,a{
@@ -76,31 +76,78 @@ img {
     height: 100px;
 }
 
-.resultadosMercado, .resultadosAliexpress , .resultadosAmazon{
+/* Contenedor principal de las tiendas */
+.tiendaContainer {
     display: flex;
-    flex-wrap: nowrap; 
-    justify-content: center; /* Cambiar para alinear los elementos al inicio */
-    align-items: center; 
-    gap: 10px; 
-    margin: 10px; /* Añade margen alrededor de los contenedores */
-    overflow-x: auto; 
-    padding: 10px;
-    width: 45%; /* Ajusta el ancho para permitir el espacio entre ellos */
-    max-width: 50%; /* Establece un ancho máximo para evitar que se estiren demasiado */
-    opacity: 0; /* Inicialmente oculto */
-    animation: fadeIn 0.5s forwards; /* Aplicar animación */
+    flex-direction: column;
+    align-items: center; /* Centra las tiendas en la página */
+    margin: 20px;
 }
 
-.resultadosMercado div, .resultadosAliexpress div {
+/* Cada contenedor individual de la tienda */
+.tienda {
+    width: 80%; /* Ajusta el ancho según lo necesites */
+    margin: 10px 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro para las tiendas */
+    padding: 20px;
+    border-radius: 10px;
+}
+
+/* Contenedor de resultados de las tiendas */
+.resultadosMercado, .resultadosAliexpress, .resultadosAmazon, .resultadosEbay {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start; /* Alinea los productos hacia la izquierda */
+    gap: 15px; /* Espacio entre productos */
+    overflow-x: auto; /* Habilita el scroll horizontal */
+    padding: 10px;
+    width: 100%;
+    max-width: 100%; /* Ancho máximo */
+    opacity: 0;
+    animation: fadeIn 0.5s forwards;
+}
+
+/* Producto individual dentro de cada tienda */
+.resultadosMercado div, .resultadosAliexpress div, .resultadosAmazon div, .resultadosEbay div {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    width: 200px; 
-    background-color: rgba(255, 255, 255, 0.2); 
+    width: 250px;
+    height: 300px;
+    background-color: rgba(255, 255, 255, 0.3); /* Fondo con opacidad */
     padding: 10px;
-    border-radius: 15px;
-    transition: background-color 0.5s; /* Transición suave para el cambio de color */
+    border-radius: 10px;
+    transition: background-color 0.5s;
+}
+
+.tienda-logo {
+    width: 155px; /* Aumenta el ancho según lo necesites */
+    height: auto; /* Mantiene la proporción de la imagen */
+    margin: 0 auto 20px; /* Centra la imagen y agrega espacio abajo */
+    display: block; /* Asegura que la imagen sea un bloque */
+    border-radius: 10px; /* Si deseas bordes redondeados */
+}
+
+.tiendaContainer {
+    animation: fadeIn 0.5s forwards;
+}
+
+/* Animación para hacer aparecer los resultados */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Efecto hover en los productos */
+.resultadosMercado div:hover, .resultadosAliexpress div:hover, .resultadosAmazon div:hover, .resultadosEbay div:hover {
+    background-color: rgba(128, 128, 128, 0.8);
 }
 
 h2{
@@ -154,3 +201,5 @@ h2{
     background-color: #1b1340; /* Cambia el color del fondo del navbar */
     padding: 1rem;
   }
+
+  

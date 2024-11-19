@@ -35,6 +35,7 @@ export class ProductSearchComponent {
   }
 
   searchTodo(): void {
+    this.clearResults(); // Limpia la pantalla antes de iniciar la búsqueda
     this.mercadoLibreService.searchProducts(this.query).subscribe((data) => {
       this.productsMercado = [data.results[0]];
     });
@@ -74,10 +75,12 @@ export class ProductSearchComponent {
   }
 
   searchCategory(category: string): void {
+    this.clearResults(); // Limpia la pantalla antes de iniciar la búsqueda
     this.performSearch(category);
   }
 
   public performSearch(query: string): void {
+    this.clearResults(); // Limpia la pantalla antes de iniciar la búsqueda
     this.mercadoLibreService.searchProducts(query).subscribe((data) => {
       this.productsMercadoCategoria = data.results.slice(0,5); 
     });
@@ -96,5 +99,15 @@ export class ProductSearchComponent {
       this.productsAliCategoria = data;
       console.log(data);  
     });
+  }
+  private clearResults(): void {
+    this.productsMercado = [];
+    this.productsAli = [];
+    this.productsAmazon = [];
+    this.productsEbay = null;
+    this.productsMercadoCategoria = [];
+    this.productsAliCategoria = [];
+    this.productsAmazonCategoria = [];
+    this.productsEbayCategoria = null;
   }
 }

@@ -9,6 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap JavaScript Bundle (incluye popper.js) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="product-search.component.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
@@ -48,71 +49,85 @@
     </nav>
         <h2>Resultados de búsqueda:</h2>
         <div class="resultadosContenedor"> 
-          
-          <div *ngIf="productsMercado.length" class="resultadosMercado">
-            <div *ngFor="let product of productsMercado">
-              <img [src]="product.thumbnail" alt="Imagen del producto" />
-              <p>{{ product.title }}</p>
-              <a [href]="product.permalink" target="_blank">Ver Producto en Mercado Libre</a>
-            </div>
-          </div>
-          
-          <div *ngIf="productsMercadoCategoria.length" class="resultadosMercado">
-            <div *ngFor="let product of productsMercadoCategoria">
-              <img [src]="product.thumbnail" alt="Imagen del producto" />
-              <p>{{ product.title }}</p>
-              <a [href]="product.permalink" target="_blank">Ver Producto en Mercado Libre</a>
-            </div>
-          </div>  
+          <div class="tiendaContainer">
+            <div class="tienda">
+              <img src="../../assets/Mercado.png" alt="Mercado Libre" class="tienda-logo" />
+                 <div *ngIf="productsMercado.length" class="resultadosMercado">
+                   <div *ngFor="let product of productsMercado">
+                     <img [src]="product.thumbnail" alt="Imagen del producto" />
+                     <p>{{ product.title }}</p>
+                     <a [href]="product.permalink" target="_blank">Ver Producto en Mercado Libre</a>
+                   </div>
+                 </div>
 
-          <div *ngIf="productsAli.length > 0" class="resultadosAliexpress">
-            <div *ngFor="let product of productsAli">
-              <img [src]="product.image" alt="{{ product.title }}" />
-              <p>{{ product.title }}</p>
-              <a [href]="product.itemUrl" target="_blank">Ver en AliExpress</a>
+                 <div *ngIf="productsMercadoCategoria.length" class="resultadosMercado">
+                  <div *ngFor="let product of productsMercadoCategoria">
+                    <img [src]="product.thumbnail" alt="Imagen del producto" />
+                    <p>{{ product.title }}</p>
+                    <a [href]="product.permalink" target="_blank">Ver Producto en Mercado Libre</a>
+                  </div>
+                </div>
             </div>
-          </div>
+               
+            <div class="tienda">
+              <img src="../../assets/Aliexpress.png" alt="AliExpress" class="tienda-logo" />
+                 <div *ngIf="productsAli.length > 0" class="resultadosAliexpress">
+                   <div *ngFor="let product of productsAli">
+                     <img [src]="product.image" alt="{{ product.title }}" />
+                     <p>{{ product.title }}</p>
+                     <a [href]="product.itemUrl" target="_blank">Ver en AliExpress</a>
+                   </div>
+                 </div>
 
-          <div *ngIf="productsAliCategoria.length > 0" class="resultadosAliexpress">
-            <div *ngFor="let product of productsAliCategoria">
-              <img [src]="product.image" alt="{{ product.title }}" />
-              <p>{{ product.title }}</p>
-              <a [href]="product.itemUrl" target="_blank">Ver en AliExpress</a>
+                 <div *ngIf="productsAliCategoria.length > 0" class="resultadosAliexpress">
+                  <div *ngFor="let product of productsAliCategoria">
+                    <img [src]="product.image" alt="{{ product.title }}" />
+                    <p>{{ product.title }}</p>
+                    <a [href]="product.itemUrl" target="_blank">Ver en AliExpress</a>
+                  </div>
+                </div>
             </div>
-          </div>
 
-          <div *ngIf="productsAmazonCategoria.length > 0" class="resultadosAmazon">
-            <div *ngFor="let product of productsAmazonCategoria">
-              <h2>{{ product.product_title }}</h2> 
-              <a [href]="'https://www.amazon.com/dp/' + product.asin" target="_blank">Ver en Amazon</a> 
-              <img [src]="product.product_photo" [alt]="product.product_title" /> 
-            </div>
-          </div>
-          
-          <div *ngIf="productsAmazon.length > 0" class="resultadosAmazon">
-            <div *ngFor="let product of productsAmazon">
-              <h2>{{ product.title }}</h2>
-              <a [href]="product.url" target="_blank">Ver en Amazon</a>
-              <img [src]="product.image" [alt]="product.title" />
-            </div>
-          </div>  
+            <div class="tienda">
+              <img src="../../assets/Amazon.png" alt="Amazon" class="tienda-logo" />
+                 <div *ngIf="productsAmazonCategoria.length > 0" class="resultadosAmazon">
+                   <div *ngFor="let product of productsAmazonCategoria">
+                     <h2>{{ product.product_title }}</h2> 
+                     <a [href]="'https://www.amazon.com/dp/' + product.asin" target="_blank">Ver en Amazon</a> 
+                     <img [src]="product.product_photo" [alt]="product.product_title" /> 
+                   </div>
+                 </div>
 
-          <div *ngIf="productsEbayCategoria" class="resultadosEbay">
-            <div>
-              <div *ngFor="let product of productsEbayCategoria">
-                <img [src]="product.image" alt="{{ product.title }}" />
-                <p>{{ product.title }}</p>
-                <a [href]="product.url" target="_blank">Ver en EBay</a>
-              </div>
+                 <div *ngIf="productsAmazon.length > 0" class="resultadosAmazon">
+                  <div *ngFor="let product of productsAmazon">
+                    <h2>{{ product.title }}</h2>
+                    <a [href]="product.url" target="_blank">Ver en Amazon</a>
+                    <img [src]="product.image" [alt]="product.title" />
+                  </div>
+                </div> 
             </div>
-          </div>
+               
+            <div class="tienda">
+              <img src="../../assets/Ebay.png" alt="eBay" class="tienda-logo" />
+                 <div *ngIf="productsEbayCategoria" class="resultadosEbay">
+                   <div>
+                     <div *ngFor="let product of productsEbayCategoria">
+                       <img [src]="product.image" alt="{{ product.title }}" />
+                       <p>{{ product.title }}</p>
+                       <a [href]="product.url" target="_blank">Ver en EBay</a>
+                     </div>
+                   </div>
 
-          <div *ngIf="productsEbay" class="resultadosEbay">
-            <div>
-              <img [src]="productsEbay.image" alt="{{ productsEbay.title }}" />
-              <p>{{ productsEbay.title }}</p>
-              <a [href]="productsEbay.url" target="_blank">Ver en EBay</a>
+                   <div *ngIf="productsEbay" class="resultadosEbay">
+                    <div>
+                      <img [src]="productsEbay.image" alt="{{ productsEbay.title }}" />
+                      <p>{{ productsEbay.title }}</p>
+                      <a [href]="productsEbay.url" target="_blank">Ver en EBay</a>
+                    </div>
+                  </div>
+                 </div>
             </div>
+
           </div>
         </div>
     </div>
