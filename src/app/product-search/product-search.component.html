@@ -17,7 +17,7 @@
   <div class="bg-[url('/assets/Fondo.jpg')] bg-contain bg-center h-screen">
     <nav class="navbar-custom">
         <div class="Titulo">
-            <img src="docs/assets/logo2.png" alt="Logo PreciosFinder" class="logo">
+            <img src="assets/logo2.png" alt="Logo PreciosFinder" class="logo">
             <!--Colocando el Titulo de Precios Finder-->
             <h1>PRECIOS<span class="purple">F</span>
               <span class="yellow">I</span>
@@ -51,7 +51,7 @@
         <div class="resultadosContenedor"> 
           <div class="tiendaContainer">
             <div class="tienda">
-              <img src="docs/assets/Mercado.png" alt="Mercado Libre" class="tienda-logo" />
+              <img src="assets/Mercado.png" alt="Mercado Libre" class="tienda-logo" />
                  <div *ngIf="productsMercado.length" class="resultadosMercado">
                    <div *ngFor="let product of productsMercado">
                      <img [src]="product.thumbnail" alt="Imagen del producto" />
@@ -70,7 +70,7 @@
             </div>
                
             <div class="tienda">
-              <img src="docs/assets/Aliexpress.png" alt="AliExpress" class="tienda-logo" />
+              <img src="assets/Aliexpress.png" alt="AliExpress" class="tienda-logo" />
                  <div *ngIf="productsAli.length > 0" class="resultadosAliexpress">
                    <div *ngFor="let product of productsAli">
                      <img [src]="product.image" alt="{{ product.title }}" />
@@ -89,7 +89,7 @@
             </div>
 
             <div class="tienda">
-              <img src="docs/assets/Amazon.png" alt="Amazon" class="tienda-logo" />
+              <img src="assets/Amazon.png" alt="Amazon" class="tienda-logo" />
                  <div *ngIf="productsAmazonCategoria.length > 0" class="resultadosAmazon">
                    <div *ngFor="let product of productsAmazonCategoria">
                      <h2>{{ product.product_title }}</h2> 
@@ -108,7 +108,7 @@
             </div>
                
             <div class="tienda">
-              <img src="docs/assets/Ebay.png" alt="eBay" class="tienda-logo" />
+              <img src="assets/Ebay.png" alt="eBay" class="tienda-logo" />
                  <div *ngIf="productsEbayCategoria" class="resultadosEbay">
                    <div>
                      <div *ngFor="let product of productsEbayCategoria">
@@ -127,7 +127,6 @@
                   </div>
                  </div>
             </div>
-
           </div>
         </div>
     </div>
